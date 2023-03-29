@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Poppins:wght@500&family=Press+Start+2P&family=Prompt:wght@500&display=swap');
+body {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 150px 1fr 1fr;
+    margin: 5px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    font-family: poppins, sans-serif;
+}
+main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+}
+h1 {
+    font-size: 66px;
+    text-align: center;
+    margin: 20px 0 0 0;
+}
+h2 {
+    font-size: 44px;
+    text-align: center;
+}
+.board-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr;
+}
+.board-space {
+    width: 200px;
+    height: 200px;
+    border: 5px solid black;
+}
+.reset-button-container, .start-button-container {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+button {
+    font-size: 33px;
+    font-family: poppins;
+    background-color: aqua;
+    border: 2px solid black;
+    box-shadow: 2px 2px 0 black;
+}
+.x {
+    height: 200px;
+    width: 200px;
+    background: green;
+    position: relative;
+}
+.x:before {
+    position: absolute;
+    content: '';
+    height: 200px;
+    border-left: 20px solid black;
+    border-radius: 10px;
+    transform: rotate(45deg);
+    left: 90px;
+}
+.x:after {
+    position: absolute;
+    content: '';
+    height: 200px;
+    border-left: 20px solid black;
+    border-radius: 10px;
+    transform: rotate(-45deg);
+    left: 90px;
+}
+.o {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: red;
+
+}
+.o:after {
+    content: '';
+    position: absolute;
+    width: 115px;
+    height: 115px;
+    border: 20px solid black;
+    border-radius: 200px;
+    top: 22px;
+    left: 22px;
+}
