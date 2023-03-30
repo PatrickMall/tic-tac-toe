@@ -9,7 +9,6 @@ let currentPlayer = 1;
 let playerPlaces= ['','','','','','','','','',];
 const resetBtn = document.querySelector('.reset');
 const allBoardSpaces = document.querySelectorAll('.board-space');
-const winningCombos = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], ]
 
 
 
@@ -19,12 +18,17 @@ boardcell.addEventListener('click', function(e) {
     });
 // function that adds player choice to the array
 const playerChoice = function(num) {
-    if(currentPlayer === 0) {
+ 
+    if(currentPlayer === 0 && playerPlaces[num] === '') {
         playerPlaces[num] = 'o';
-        displayMessage(`You have picked square ${num +1} for your choice`)
-    } else if (currentPlayer === 1) {
+        checkWinner('o');
+        checkTie()
+        // displayMessage(`Player 2 has picked square ${num +1} for their choice, It's player 1's turn now.`)
+    } else if (currentPlayer === 1 && playerPlaces[num] === '') {
         playerPlaces[num] = 'x';
-        displayMessage(`You have picked square ${num +1} for your choice`)
+        checkWinner('x');
+        checkTie();
+        // displayMessage(`Player 1 has picked square ${num +1} for their choice, It's player 2's turn now.`)
     }
     console.log(playerPlaces);
 }
@@ -36,11 +40,6 @@ resetBtn.addEventListener('click', function() {
     addSymbol('reset')
 })
     
-
-
-
-
-
 // function that adds the correct symbol to the board and checks if the 
 //space is occupied based on currentPlayer variable
 const addSymbol = function(e) {
@@ -48,6 +47,7 @@ const addSymbol = function(e) {
         allBoardSpaces.forEach((element) => {
             element.classList.remove('x');
             element.classList.remove('o');
+            displayMessage('')
         })
     }
     else if (e.target.classList.contains('x') || e.target.classList.contains('o')) {
@@ -71,4 +71,23 @@ const addSymbol = function(e) {
 
 const displayMessage = function(message) {
     messageText.innerText = message;
+}
+
+
+//check winner or tie function
+
+const checkWinner = function(symbol) {
+    if ((playerPlaces[0] === symbol && playerPlaces[1] === symbol && playerPlaces[2] === symbol) || (playerPlaces[3] === symbol && playerPlaces[4] === symbol && playerPlaces[5] === symbol) || (playerPlaces[6] === symbol && playerPlaces[7] === symbol && playerPlaces[8] === symbol) || (playerPlaces[0] === symbol && playerPlaces[3] === symbol && playerPlaces[6] === symbol) || (playerPlaces[1] === symbol && playerPlaces[4] === symbol && playerPlaces[7] === symbol) || (playerPlaces[2] === symbol && playerPlaces[5] === symbol && playerPlaces[8] === symbol) || (playerPlaces[0] === symbol && playerPlaces[4] === symbol && playerPlaces[8] === symbol) || (playerPlaces[2] === symbol && playerPlaces[4] === symbol && playerPlaces[6] === symbol)){
+        if (currentPlayer === 0) {
+            displayMessage('🎉🎉🎉Player 2 has won the game!!🎉🎉🎉');
+        } else {
+            displayMessage('🎉🎉🎉Player 1 has won the game!!🎉🎉🎉');
+        }
+    } 
+}
+
+const checkTie = function() {
+    if (playerPlaces.includes('') === false) {
+        displayMessage('Players have tied');
+    }
 }
