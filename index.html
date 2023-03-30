@@ -11,26 +11,24 @@
 <body>
     <header>
         <h1>Tic, Tac, Toe Game</h1>
+        <div class="reset-button-container">
+            <button class="reset hidden">Reset a game</button>
+        </div>
     </header>
     <main>
         <div class="start-button-container">
-            <button>Start a game</button>
+            <button class="start">Start a game</button>
         </div>
         <div class="board-container">
-            <div class="board-space" onclick="playerChoice(0)"></div>
-            <div class="board-space" onclick="playerChoice(1)"  ></div>
-            <div class="board-space" onclick="playerChoice(2)" ></div>
-            <div class="board-space" onclick="playerChoice(3)" ></div>
-            <div class="board-space" onclick="playerChoice(4)" ></div>
-            <div class="board-space" onclick="playerChoice(5)" ></div>
-            <div class="board-space" onclick="playerChoice(6)" ></div>
-            <div class="board-space" onclick="playerChoice(7)" ></div>
-            <div class="board-space" onclick="playerChoice(8)" ></div>
-
-        </div>
-        <div class="reset-button-container">
-            <button class="reset">Reset a game</button>
-        </div>
+            <div class="board-space hidden" onclick="playerChoice(0)" id="0"></div>
+            <div class="board-space hidden" onclick="playerChoice(1)" id="1" ></div>
+            <div class="board-space hidden" onclick="playerChoice(2)" id="2"></div>
+            <div class="board-space hidden" onclick="playerChoice(3)" id="3"></div>
+            <div class="board-space hidden" onclick="playerChoice(4)" id="4"></div>
+            <div class="board-space hidden" onclick="playerChoice(5)" id="5"></div>
+            <div class="board-space hidden" onclick="playerChoice(6)" id="6"></div>
+            <div class="board-space hidden" onclick="playerChoice(7)" id="7"></div>
+            <div class="board-space hidden" onclick="playerChoice(8)" id="8"></div>
         </div>
     </main>
     <footer>

@@ -3,14 +3,13 @@ body {
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-rows: 150px 1fr 1fr;
+    grid-template-rows: 200px 1fr 1fr;
     margin: 5px;
     box-sizing: border-box;
     margin: 0 auto;
     font-family: poppins, sans-serif;
 }
 main {
-    display: grid;
     grid-template-columns: 2fr 1fr 2fr;
 }
 h1 {
@@ -91,4 +90,7 @@ button {
     border-radius: 200px;
     top: 22px;
     left: 22px;
+}
+.hidden {
+    display: none;
 }
