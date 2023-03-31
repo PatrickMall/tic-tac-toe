@@ -7,7 +7,8 @@
     --pink: #f222ff;
     --purple: #8c1eff;
     --green: #5edba5;
-    --picked: #5edba5;
+    --pickedPlayer1: ;
+    --pickedPlayer2: ;
 }
 
 body {
@@ -107,10 +108,14 @@ button {
     text-shadow: 2px 2px 0 var(--purple);
     border: 3px solid var(--yellow);
     box-shadow: 5px 5px 5px var(--purple);
-    background: linear-gradient(-45deg, var(--red), var(--pink));
+    background: linear-gradient(-45deg, var(--purple), var(--pink));
     background-size: 400% 400%;
     animation: gradient 3s ease infinite;
     margin-top: 30px;
+}
+button:hover {
+    box-shadow: 5px 5px 5px var(--yellow);
+    background: var(--red);
 }
 
 @keyframes gradient {
@@ -129,22 +134,25 @@ button {
     height: 180px;
     width: 180px;
     position: relative;
+    -webkit-animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 .x:before {
     position: absolute;
     content: '';
     height: 180px;
-    border-left: 20px solid var(--picked);
+    border-left: 20px solid var(--pickedPlayer1);
     
     border-radius: 10px;
     transform: rotate(45deg);
     left: 80px;
+    
 }
 .x:after {
     position: absolute;
     content: '';
     height: 180px;
-    border-left: 20px solid var(--picked);
+    border-left: 20px solid var(--pickedPlayer1);
     
     border-radius: 10px;
     transform: rotate(-45deg);
@@ -154,6 +162,8 @@ button {
     position: relative;
     width: 180px;
     height: 180px;
+    -webkit-animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
 }
 .o:after {
@@ -161,18 +171,16 @@ button {
     position: absolute;
     width: 115px;
     height: 115px;
-    border: 20px solid var(--picked);
+    border: 20px solid var(--pickedPlayer2);
     border-radius: 200px;
     top: 13px;
     left: 13px;
+    
 }
 .hidden {
     display: none;
 }
-.message-container {
-    margin-top: 30vh;
 
-}
 
 @keyframes opacity-to-show {
     0% {
@@ -207,7 +215,10 @@ label {
 .color-picker {
     width: 58px;
     height: 58px;
-    border: none;
+    border: none;   
+}
+.color-picker:hover {
+    transform: scale(110%);
 }
 form {
     display: flex;
@@ -221,81 +232,66 @@ form {
     text-shadow: 2px 2px 0 var(--purple);
     border: 3px solid var(--yellow);
     box-shadow: 5px 5px 5px var(--purple);
-    background: linear-gradient(-45deg, var(--red), var(--pink));
+    background: linear-gradient(-45deg, var(--green), var(--pink), var(--red));
     background-size: 400% 400%;
     animation: gradient 3s ease infinite;
     margin-left: 20px;
-
-    
-
 }
-.preset {
+.submit-color-btn:hover {
+    box-shadow: 3px 3px 5px var(--yellow);
+    background: var(--red);
+}
+.preset-1, .preset-2 {
     width: 58px;
     height: 58px;
     display: inline-block;
     margin: 0 5px;
     border: 2px solid white;
 }
-
-
-.player-1-box-1, .player-2-box-1{
-    background-color: var(--orange);
+.preset-1:hover, .preset-2:hover {
+    transform: scale(110%);
 }
-.player-1-box-2, .player-2-box-2 {
-    background-color: var(--pink);
-}
-.player-1-box-3, .player-2-box-3 {
+#player-1-box-1, #player-2-box-1{
     background-color: var(--yellow);
 }
-.player-1-box-4, .player-2-box-4 {
+#player-1-box-2, #player-2-box-2 {
+    background-color: var(--orange);
+}
+#player-1-box-3, #player-2-box-3 {
     background-color: var(--red);
 }
-.player-1-box-5, .player-2-box-5 {
+#player-1-box-4, #player-2-box-4 {
+    background-color: var(--pink);
+}
+#player-1-box-5, #player-2-box-5 {
     background-color: var(--purple);
 }
 .preset:focus {
     background-color: black;
 }
-.lottie {
- width: 100vw;
- height: 100vw;
- z-index: -5;
- position: absolute;
-}
 
-.puff-out-center {
-	-webkit-animation: puff-out-center 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
-	        animation: puff-out-center 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
-}
-@-webkit-keyframes puff-out-center {
+@-webkit-keyframes slide-in-fwd-center {
     0% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-      -webkit-filter: blur(0px);
-              filter: blur(0px);
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: scale(2);
-              transform: scale(2);
-      -webkit-filter: blur(4px);
-              filter: blur(4px);
+      -webkit-transform: translateZ(-1400px);
+              transform: translateZ(-1400px);
       opacity: 0;
     }
-  }
-  @keyframes puff-out-center {
-    0% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-      -webkit-filter: blur(0px);
-              filter: blur(0px);
+    100% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
       opacity: 1;
     }
-    100% {
-      -webkit-transform: scale(2);
-              transform: scale(2);
-      -webkit-filter: blur(4px);
-              filter: blur(4px);
+  }
+  @keyframes slide-in-fwd-center {
+    0% {
+      -webkit-transform: translateZ(-1400px);
+              transform: translateZ(-1400px);
       opacity: 0;
     }
+    100% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      opacity: 1;
+    }
   }
+  
