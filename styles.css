@@ -25,14 +25,13 @@ body {
 #background-video {
         position: absolute;
         height: 100%;
-        width: 177.77777778vh; /* 100 * 16 / 9 */
+        width: 177.77777778vh;
         min-width: 100%;
         min-height: 100%;
         z-index: -10;
 
 }
 header {
-    border: 3px solid white;
     margin-top: -250px;
 }
 
@@ -85,7 +84,7 @@ h3 {
     border-right: 20px solid var(--purple);
     border-bottom: 20px solid var(--pink);
     border-top-left-radius: 10px;
-    animation: opacity 3s ease forwards;
+    
     
 }
 .board-space:nth-child(3n + 3) {
@@ -172,6 +171,7 @@ button {
 }
 .message-container {
     margin-top: 30vh;
+
 }
 
 @keyframes opacity-to-show {
@@ -263,4 +263,39 @@ form {
  position: absolute;
 }
 
-
+.puff-out-center {
+	-webkit-animation: puff-out-center 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+	        animation: puff-out-center 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+}
+@-webkit-keyframes puff-out-center {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(2);
+              transform: scale(2);
+      -webkit-filter: blur(4px);
+              filter: blur(4px);
+      opacity: 0;
+    }
+  }
+  @keyframes puff-out-center {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(2);
+              transform: scale(2);
+      -webkit-filter: blur(4px);
+              filter: blur(4px);
+      opacity: 0;
+    }
+  }

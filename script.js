@@ -5,7 +5,8 @@ const messageText = document.querySelector('.message')
 let currentPlayer = 1;
 let playerPlaces= ['','','','','','','','','',];
 const resetBtn = document.querySelector('.reset');
-const startBtn = document.querySelector('.start')
+const startBtn = document.querySelector('.start');
+const againBtn = document.querySelector('.another');
 const allBoardSpaces = document.querySelectorAll('.board-space');
 const mainSection = document.querySelector('main');
 let squareSelected = 0;
@@ -16,7 +17,8 @@ const xBefore = document.querySelector('.x', ':before');
 const xAfter = document.querySelector('.x', ':after');
 const colorPickerContainer = document.querySelector('.color-picker-container');
 const playerColorPicker = document.querySelectorAll('.player-color-picker');
-
+const perfect = document.querySelector('.perfect');
+const fight = document.querySelector('.fight');
 
 // Start Button
 startBtn.addEventListener('click', function(){
@@ -25,19 +27,21 @@ startBtn.addEventListener('click', function(){
     resetBtn.classList.remove('hidden');
     mainSection.style.display = 'grid';
     startBtn.classList.add('hidden');
-    
     allBoardSpaces.forEach((element) => {
         element.classList.remove('x');
         element.classList.remove('o');
+        element.style.animation = 'opacity 3s ease forwards';
     })
     colorPickerContainer.classList.add('hidden');
     playerColorPicker.forEach((element) => {
         element.classList.add('hidden');})
     displayMessage('')
     playerPlaces= ['','','','','','','','','',];
-    setTimeout(audioStart, 1000)
+    setTimeout(audioStart, 1000);
+    currentPlayer = 1;
+    fightSample();
+    
 })
-
 
 //reset button
 resetBtn.addEventListener('click', function() {
@@ -51,9 +55,19 @@ resetBtn.addEventListener('click', function() {
     console.log(playerPlaces);
 })
 
+//play again Btn
 
-// function that adds the correct symbol to the board and checks if the 
-//space is occupied based on currentPlayer variable
+againBtn.addEventListener('click', function(){
+    startBtn.classList.remove('hidden');
+    againBtn.classList.add('hidden');
+    colorPickerContainer.classList.remove('hidden');
+    playerColorPicker.forEach((element) => {
+        element.classList.remove('hidden');})
+
+})
+
+
+//MAIN FUNCTION
 boardcell.addEventListener('click',  function(e) {
 
      if (e.target.classList.contains('x') || e.target.classList.contains('o')) {
@@ -65,11 +79,13 @@ boardcell.addEventListener('click',  function(e) {
         playerPlaces[e.target.id] = 'o';
         checkWinner('o');
         checkTie();
+        perfectSample();
         } else if (currentPlayer === 1 && playerPlaces[e.target.id] === '') {
         e.target.classList.add('x');
         playerPlaces[e.target.id] = 'x';
         checkWinner('x');
         checkTie();
+        perfectSample();
          }
         if (currentPlayer === 0) {
         currentPlayer = 1;
@@ -106,8 +122,8 @@ const checkWinner = function(symbol) {
             
         })
         resetBtn.classList.add('hidden');
-            startBtn.classList.remove('hidden');
-            mainSection.style.display = 'block';
+        againBtn.classList.remove('hidden');
+        mainSection.style.display = 'block';
     }  else {
         if (currentPlayer === 0) {
             displayMessage(`It's x's turn now.`);
@@ -122,12 +138,15 @@ const checkWinner = function(symbol) {
 const checkTie = function() {
     if (playerPlaces.includes('') === false) {
         displayMessage('Players have tied');
+        fadeOut();
         allBoardSpaces.forEach(element => {
             element.classList.add('hidden');     
         })
+        startBtn.classList.add('hidden');
         resetBtn.classList.add('hidden');
-            startBtn.classList.remove('hidden');
-            mainSection.style.display = 'block';
+        againBtn.classList.remove('hidden');
+        
+        mainSection.style.display = 'block';
     }
 }
 //Start Audio Function
@@ -135,8 +154,9 @@ const audioStart = function(){
     audio.classList.add('hidden');
     audio.setAttribute('src', './lady-of-the-80x27s-128379.mp3');
     audio.setAttribute('autoplay', '');
+    audio.volume = 0.5;
+    mainSection.appendChild(audio); 
     
-    mainSection.appendChild(audio);   
 }
 //Stop Audio Function
 const audioStop = function(){
@@ -161,7 +181,7 @@ const volumeControl = function() {
     } else {
         clearInterval(interval);
         audioStop()
-        audio.volume = 1;
+        audio.volume = 0.5;
         console.log(audio.volume)
     }
     
@@ -176,6 +196,14 @@ presetColorBoxes.forEach((box) => {
         console.log(`you've clicked ${e.target.id}`);
     })
 })
+const perfectSample = function() {
+    perfect.play();
+
+}
+
+const fightSample = function() {
+    fight.play();
+}
 
     
 
