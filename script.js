@@ -1,9 +1,8 @@
 
 //variables
+// Query Selectors
 const boardcell = document.querySelector('.board-container');
 const messageText = document.querySelector('.message')
-let currentPlayer = 1;
-let playerPlaces= ['','','','','','','','','',];
 const resetBtn = document.querySelector('.reset');
 const startBtn = document.querySelector('.start');
 const againBtn = document.querySelector('.another');
@@ -13,7 +12,6 @@ const customColor1 = document.querySelector('#color-picker-1');
 const customColor2= document.querySelector('#color-picker-2');
 const allBoardSpaces = document.querySelectorAll('.board-space');
 const mainSection = document.querySelector('main');
-let squareSelected = 0;
 const audio = document.createElement('audio');
 let presetColorBoxes1 = document.querySelectorAll('.preset-1');
 let presetColorBoxes2 = document.querySelectorAll('.preset-2');
@@ -24,6 +22,7 @@ const playerColorPicker = document.querySelectorAll('.player-color-picker');
 const perfect = document.querySelector('.perfect');
 const fight = document.querySelector('.fight');
 const winnerAudio = document.querySelector('.win');
+// Internal JS variables
 let player1Color = "";
 let player2Color = "";
 let playerWinsInFinalGo = false;
@@ -32,31 +31,42 @@ let player1Lose = 0;
 let player2Wins = 0;
 let player2Lose = 0;
 let playerTies = 0;
+let currentPlayer = 1;
+let playerPlaces= ['','','','','','','','','',];
+let squareSelected = 0;
 
-// Start Button
+// Start Button click handler
 startBtn.addEventListener('click', function(){
     if (player1Color === player2Color) {
         displayMessage(`You can't have the same colors, pick a different color`)
     } else {
-    allBoardSpaces.forEach(element => {
-        element.classList.remove('hidden')});
-    allBoardSpaces.forEach((element) => {
-        element.classList.remove('x');
-        element.classList.remove('o')});
-    resetBtn.classList.remove('hidden');
-    mainSection.style.display = 'grid';
-    startBtn.classList.add('hidden');
-    colorPickerContainer.classList.add('hidden');
+        hideShowDivs();
+        resetJS()
+        mainSection.style.display = 'grid';
+        startBtn.classList.add('hidden');
+        displayMessage('')
+        setTimeout(audioStart, 1000);
+        fightSample();
+    }})
+
+// Call back functions for start button
+
+const hideShowDivs = function() {
     playerColorPicker.forEach((element) => {
         element.classList.add('hidden');})
-    displayMessage('')
+        allBoardSpaces.forEach(element => {
+            element.classList.remove('hidden')});
+        allBoardSpaces.forEach((element) => {
+            element.classList.remove('x');
+            element.classList.remove('o')});
+        resetBtn.classList.remove('hidden');
+        colorPickerContainer.classList.add('hidden');
+}
+const resetJS = function() {
     playerPlaces= ['','','','','','','','','',];
-    setTimeout(audioStart, 1000);
     currentPlayer = 1;
-    fightSample();
     playerWinsInFinalGo = false;
-    
-}})
+}
 
 //reset button
 resetBtn.addEventListener('click', function() {
@@ -238,9 +248,10 @@ presetColorBoxes2.forEach((box) => {
 const colorPickerAddColor = function(e, colorArr, player) {
     rootSelector.style.setProperty(`--pickedPlayer${player}`, colorPicker[colorArr]);
         e.target.style["boxShadow"] = `0 0 20px white`;
-        customColor1.style["boxShadow"] = `0 0 0 white`;
+        if (player === 1) {customColor1.style["boxShadow"] = `0 0 0 white`;
+} else if (player === 2) {
         customColor2.style["boxShadow"] = `0 0 0 white`;
-}
+}}
 //player 1 custom color picker
 player1customColorBtn.addEventListener('submit', function(e) {
     e.preventDefault();
