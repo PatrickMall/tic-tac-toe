@@ -27,11 +27,16 @@ const winnerAudio = document.querySelector('.win');
 let player1Color = "";
 let player2Color = "";
 let playerWinsInFinalGo = false;
+let player1Wins = 0;
+let player1Lose = 0;
+let player2Wins = 0;
+let player2Lose = 0;
+let playerTies = 0;
 
 // Start Button
 startBtn.addEventListener('click', function(){
     if (player1Color === player2Color) {
-        displayMessage(`you can't have the same colors, pick a different color`)
+        displayMessage(`You can't have the same colors, pick a different color`)
     } else {
     allBoardSpaces.forEach(element => {
         element.classList.remove('hidden')});
@@ -55,14 +60,13 @@ startBtn.addEventListener('click', function(){
 
 //reset button
 resetBtn.addEventListener('click', function() {
-    console.log('clicked')
     allBoardSpaces.forEach((element) => {
         element.classList.remove('x');
         element.classList.remove('o');
         displayMessage('')
     })
     playerPlaces= ['','','','','','','','','',];
-    console.log(playerPlaces);
+    currentPlayer = 1
 })
 
 //play again Btn
@@ -118,10 +122,12 @@ const checkWinner = function(symbol) {
         if (currentPlayer === 0) {
             displayMessage('🎉🎉🎉  Player 2 has won the game!!  🎉🎉🎉');
             winnerSample();
+            playerScore();
             fadeOut();
         } else {
             displayMessage('🎉🎉🎉  Player 1 has won the game!!  🎉🎉🎉');
             winnerSample();
+            playerScore();
             fadeOut();
             
         }
@@ -155,8 +161,8 @@ const checkTie = function() {
         startBtn.classList.add('hidden');
         resetBtn.classList.add('hidden');
         againBtn.classList.remove('hidden');
-        
         mainSection.style.display = 'block';
+        tiedGameCounter();
     }
 }
 //Start Audio Function
@@ -164,6 +170,7 @@ const audioStart = function(){
     audio.classList.add('hidden');
     audio.setAttribute('src', './lady-of-the-80x27s-128379.mp3');
     audio.setAttribute('autoplay', '');
+    audio.setAttribute('loop', '');
     audio.volume = 0.5;
     mainSection.appendChild(audio); 
     
@@ -185,14 +192,12 @@ const fadeOut =function() {
 }
 //volume controller
 const volumeControl = function() {
-    if (audio.volume > 0.1) {
+    if (audio.volume > 0.01) {
         audio.volume -= 0.01;
-        console.log(audio.volume)
     } else {
         clearInterval(interval);
         audioStop()
         audio.volume = 0.5;
-        console.log(audio.volume)
     }   
 }
 
@@ -243,6 +248,8 @@ player1customColorBtn.addEventListener('submit', function(e) {
     player1Color = customColor1.value;
     rootSelector.style.setProperty(`--pickedPlayer1`, player1Color);
     customColor1.style["boxShadow"] = `0 0 20px white`;
+    const submitBtn1 = document.querySelector('.color-select-1');
+    submitBtn1.setAttribute('value', 'Selected');
 })
 
 //player 2 custom color picker
@@ -252,6 +259,8 @@ player2customColorBtn.addEventListener('submit', function(e) {
     player2Color = customColor2.value;
     rootSelector.style.setProperty(`--pickedPlayer2`, player2Color);
     customColor2.style["boxShadow"] = `0 0 20px white`;
+    const submitBtn2 = document.querySelector('.color-select-2');
+    submitBtn2.setAttribute('value', 'Selected');
 })
 // street fighter sample functions
 const perfectSample = function() {
@@ -264,4 +273,33 @@ const winnerSample = function() {
     winnerAudio.play();
 }   
 
+
+// player ongoing score updater function for win
+const playerScore = function() {
+  if (currentPlayer === 0) {
+    const playerWin = document.querySelector('#player-2-wins');
+    const playerLose = document.querySelector('#player-1-lose');
+    player2Wins ++;
+    playerWin.innerText = player2Wins;
+    player1Lose ++;
+    playerLose.innerText = player1Lose;
+  }  else if (currentPlayer === 1) {
+    const playerWin = document.querySelector('#player-1-wins');
+    const playerLose = document.querySelector('#player-2-lose');
+    player1Wins ++;
+    playerWin.innerText = player1Wins;
+    player2Lose ++;
+    playerLose.innerText = player2Lose;
+  }
+}
+
+//tied game counter
+ const tiedGameCounter = function() {
+   
+    playerTies ++;
+    const player1Ties = document.querySelector('#player-1-ties');
+    player1Ties.innerText = playerTies;
+    const player2Ties = document.querySelector('#player-2-ties');
+    player2Ties.innerText = playerTies;
+ }
 

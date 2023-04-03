@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Forum&family=Orbitron:wght@500&family=Poppins:wght@500&family=Press+Start+2P&family=Prompt:wght@500&display=swap');@import url('https://fonts.googleapis.com/css2?family=Forum&family=Poppins:wght@500&family=Press+Start+2P&family=Prompt:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap');
+
 :root {
     --yellow: #ffd319;
     --orange: #ff901f;
@@ -72,6 +73,10 @@ h3 {
     font-family: orbitron;
     color: var(--yellow);
  }
+
+ .message-container{
+    margin-top: 0;
+ }
 .board-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -110,12 +115,14 @@ button {
     box-shadow: 5px 5px 5px var(--purple);
     background: linear-gradient(-45deg, var(--purple), var(--pink));
     background-size: 400% 400%;
-    animation: gradient 3s ease infinite;
-    margin-top: 30px;
+    animation: gradient 3s ease infinite;  
 }
 button:hover {
     box-shadow: 5px 5px 5px var(--yellow);
     background: var(--red);
+}
+.reset {
+    margin-top: 40px;
 }
 
 @keyframes gradient {
@@ -195,6 +202,8 @@ button:hover {
     justify-content: space-around;
     align-content: center;
     
+    
+    
 }
 .player-color-picker {
     background-color: #8c1eff90;
@@ -203,7 +212,7 @@ button:hover {
     text-shadow: 1px 1px 0 var(--red);
     width: 380px;
     padding: 20px;
-    margin: 100px 0 0 0;
+    margin: 20px 0 0 0;
 }
 label {
     font-family: orbitron;
@@ -293,5 +302,13 @@ form {
               transform: translateZ(0);
       opacity: 1;
     }
+  }
+  .player-score-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .score-title, .score{
+    font-size: 22px;
   }
   
