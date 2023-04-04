@@ -41,7 +41,8 @@ startBtn.addEventListener('click', function(){
         displayMessage(`You can't have the same colors, pick a different color`)
     } else {
         hideShowDivs();
-        resetJS()
+        resetJS();
+        clearBoardOfXAndO();
         mainSection.style.display = 'grid';
         startBtn.classList.add('hidden');
         displayMessage('')
@@ -56,27 +57,27 @@ const hideShowDivs = function() {
         element.classList.add('hidden');})
         allBoardSpaces.forEach(element => {
             element.classList.remove('hidden')});
-        allBoardSpaces.forEach((element) => {
-            element.classList.remove('x');
-            element.classList.remove('o')});
         resetBtn.classList.remove('hidden');
         colorPickerContainer.classList.add('hidden');
 }
+
 const resetJS = function() {
     playerPlaces= ['','','','','','','','','',];
     currentPlayer = 1;
     playerWinsInFinalGo = false;
 }
 
-//reset button
-resetBtn.addEventListener('click', function() {
+const clearBoardOfXAndO = function() {
     allBoardSpaces.forEach((element) => {
         element.classList.remove('x');
-        element.classList.remove('o');
-        displayMessage('')
-    })
-    playerPlaces= ['','','','','','','','','',];
-    currentPlayer = 1
+        element.classList.remove('o')});
+}
+
+//reset button
+resetBtn.addEventListener('click', function() {
+    clearBoardOfXAndO();
+    displayMessage('');
+    resetJS();
 })
 
 //play again Btn
@@ -103,19 +104,23 @@ boardcell.addEventListener('click',  function(e) {
         playerPlaces[e.target.id] = 'o';
         checkWinner('o');
         checkTie();
+        switchPlayer()
         } else if (currentPlayer === 1 && playerPlaces[e.target.id] === '') {
         e.target.classList.add('x');
         playerPlaces[e.target.id] = 'x';
         checkWinner('x');
         checkTie();
+        switchPlayer()
          }
-        if (currentPlayer === 0) {
+}})
+
+const switchPlayer = function() {
+    if (currentPlayer === 0) {
         currentPlayer = 1;
         }  else if (currentPlayer === 1) {
         currentPlayer = 0;
         }
-
-}})
+}
 
 //display message function
 
@@ -145,9 +150,7 @@ const checkWinner = function(symbol) {
             element.classList.add('hidden');
             
         })
-        resetBtn.classList.add('hidden');
-        againBtn.classList.remove('hidden');
-        mainSection.style.display = 'block';
+        endGameBtns();
     }  else {
         if (currentPlayer === 0) {
             displayMessage(`It's x's turn now.`);
@@ -168,12 +171,16 @@ const checkTie = function() {
         allBoardSpaces.forEach(element => {
             element.classList.add('hidden');     
         })
-        startBtn.classList.add('hidden');
-        resetBtn.classList.add('hidden');
-        againBtn.classList.remove('hidden');
-        mainSection.style.display = 'block';
+        endGameBtns();
         tiedGameCounter();
     }
+}
+
+const endGameBtns = function() {
+    startBtn.classList.add('hidden');
+    resetBtn.classList.add('hidden');
+    againBtn.classList.remove('hidden');
+    mainSection.style.display = 'block';
 }
 //Start Audio Function
 const audioStart = function(){

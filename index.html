@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic, Tac, Toe</title>
-    <link href="styles.css" rel="stylesheet" />
+    <link href="./css/main-styles.css" rel="stylesheet" media="screen and (min-width: 481px)" />
+    <link rel="stylesheet" media="screen and (max-width: 480px)" href="./css/mobile.css" />
     <script defer src="script.js"></script>
+    <link rel="icon" type="image/x-icon" href="./favpng_tic-tac-toe-christian-cross.png">
 
 </head>
 <body>
@@ -42,7 +44,7 @@
                     <form id="player-1-custom">
                         <input type="color" name="player-1-color"
                         value="#5edba5" class="color-picker" id="color-picker-1">
-                        <input type="submit" class="submit-color-btn color-select-1" id="color-btn-player1" value="Submit">
+                        <input type="submit" class="submit-color-btn color-select-1" id="color-btn-player1" value="Select">
                     </form>
                      <p>or pick one of my top retrowave colours</p>
                      <div class="preset-color-container">
@@ -55,7 +57,7 @@
                         <div class="player-score-container">
                             <div class="win-score">
                                 <h2 class="score-title">Wins</h2>
-                                <h3 class="score"id=player-1-wins>0</h3>
+                                <h3 class="score" id=player-1-wins>0</h3>
                             </div>
                             <div class="tie-score ">
                                 <h2 class="score-title">Ties</h2>
@@ -75,7 +77,7 @@
                     <form id="player-2-custom">
                     <input type="color" name="player-1-color"
                      value="#5edba5" id="color-picker-2" class="color-picker">
-                     <input type="submit" class="submit-color-btn color-select-2" id="color-btn-player2">
+                     <input type="submit" class="submit-color-btn color-select-2" id="color-btn-player2" value="Select">
                     </form>
                      <p>or pick one of my top retrowave colours</p>
                      <div class="preset-color-container">
@@ -88,7 +90,7 @@
                         <div class="player-score-container">
                             <div class="win-score">
                                 <h2 class="score-title">Wins</h2>
-                                <h3 class="score"id=player-2-wins>0</h3>
+                                <h3 class="score" id=player-2-wins>0</h3>
                             </div>
                             <div class="tie-score ">
                                 <h2 class="score-title">Ties</h2>
@@ -99,7 +101,7 @@
                                 <h3 class="score" id=player-2-lose>0</h3>
                             </div>
                             </div>
-                    </div>      
+                    </div>     
             </div>
             
             <div class="board-container">
@@ -113,10 +115,11 @@
                 <div class="board-space hidden"  id="7"></div>
                 <div class="board-space hidden"  id="8"></div>
             </div>
-            <div class="message-container">
-                <h2 class="message"></h2>
-        </div>
+            <footer>
+                <div class="message-container">
+                    <h2 class="message"></h2>
+                </div>
+            </footer>
     </main>
-</div>
 </body>
 </html>
