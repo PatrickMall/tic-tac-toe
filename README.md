@@ -36,6 +36,20 @@ Below is a list of the features I have added to the game which meet and add to t
 - The game also has a synthwave sound track for in game entertainment which start upon clicking the game start button, once players have selected their piece colours. The audio file can be found[here](https://pixabay.com/music/synthwave-lady-of-the-80x27s-128379/)
 - I used Classic streetfighter game samples for the start of the game, if somone wins and also when players make their move on the board.
 
+## How to use the app
+
+When loaded the app should look like this:
+![Opening image of tic, tac, toe game](./Screenshot 2023-04-04 at 09.01.38.png "Opening page of tic tac toe app")
+
+
+When the app has loaded players will be asked to select a colour for the counter and then click the "start game" button.
+
+Player can then select the spaces on the boardgame to place their marker (either x or o, depending on the player).
+
+The game ends when either player get three in a row, either vertically, horizontally or diagonally.
+
+Player can the play again and the win, loose or tie is recorded to their counter for future games.
+
 ## Challenges
 
 Being my first ever project some of the technology I was using was quite new to me and took me a lot of time to really get my head around how to utilise it. 
