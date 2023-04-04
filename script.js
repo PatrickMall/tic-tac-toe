@@ -35,6 +35,7 @@ let currentPlayer = 1;
 let playerPlaces= ['','','','','','','','','',];
 let squareSelected = 0;
 
+/* PseudoCode -   When clicked, display none for start button, toggle display of game board, stop players from having same colour, start music */
 // Start Button click handler
 startBtn.addEventListener('click', function(){
     if (player1Color === player2Color) {
@@ -91,8 +92,16 @@ againBtn.addEventListener('click', function(){
     displayMessage("")
 })
 
+/* Pseudocode 
+if player space === already taken space { display error}
+check for winner
+if winner == true { run winner function }
+else check for tie
+if tie === true {run ite function} */
 
-//MAIN FUNCTION - adds x or o to the board and checks for winner, tie - then switches player
+/*MAIN FUNCTION - adds x or o to the board and checks for winner, tie - then switches player
+else add o or x  to space and switch player */
+
 boardcell.addEventListener('click',  function(e) {
 
      if (e.target.classList.contains('x') || e.target.classList.contains('o')) {
@@ -123,14 +132,14 @@ const switchPlayer = function() {
         }
 }
 
-//display message function
+//Display message function
 
 const displayMessage = function(message) {
     messageText.innerText = message;
 }
 
 
-//check winner function
+//Check winner function
 
 const checkWinner = function(symbol) {
     if ((playerPlaces[0] === symbol && playerPlaces[1] === symbol && playerPlaces[2] === symbol) || (playerPlaces[3] === symbol && playerPlaces[4] === symbol && playerPlaces[5] === symbol) || (playerPlaces[6] === symbol && playerPlaces[7] === symbol && playerPlaces[8] === symbol) || (playerPlaces[0] === symbol && playerPlaces[3] === symbol && playerPlaces[6] === symbol) || (playerPlaces[1] === symbol && playerPlaces[4] === symbol && playerPlaces[7] === symbol) || (playerPlaces[2] === symbol && playerPlaces[5] === symbol && playerPlaces[8] === symbol) || (playerPlaces[0] === symbol && playerPlaces[4] === symbol && playerPlaces[8] === symbol) || (playerPlaces[2] === symbol && playerPlaces[4] === symbol && playerPlaces[6] === symbol)){
@@ -164,7 +173,7 @@ const checkWinner = function(symbol) {
 }
 
 
-// check tie function
+// Check tie function
 const checkTie = function() {
     if (playerPlaces.includes('') === false && playerWinsInFinalGo === false) {
         displayMessage('Players have tied');
@@ -177,14 +186,14 @@ const checkTie = function() {
     }
 }
 
-// general clean up function that adds/ removes start, reset, playa again buttons
+// General clean up function that adds/ removes start, reset, play again buttons
 const endGameBtns = function() {
     startBtn.classList.add('hidden');
     resetBtn.classList.add('hidden');
     againBtn.classList.remove('hidden');
     mainSection.style.display = 'block';
 }
-//Start Audio Function
+// Start Audio Function
 const audioStart = function(){
     audio.classList.add('hidden');
     audio.setAttribute('src', './lady-of-the-80x27s-128379.mp3');
@@ -194,7 +203,7 @@ const audioStart = function(){
     mainSection.appendChild(audio); 
     
 }
-//Stop Audio Function
+// Stop Audio Function
 const audioStop = function(){
     audio.classList.add('hidden');
     audio.removeAttribute('src', './lady-of-the-80x27s-128379.mp3');
@@ -203,13 +212,13 @@ const audioStop = function(){
     mainSection.removeChild(audio);   
 }
 
-// fade out function for music when player wins
+// Fade out function for music when player wins or ties
 let interval;
 const fadeOut =function() {
     interval = setInterval(volumeControl, 50);
    
 }
-//volume controller
+// Volume controller for fade out function
 const volumeControl = function() {
     if (audio.volume > 0.01) {
         audio.volume -= 0.01;
@@ -220,10 +229,9 @@ const volumeControl = function() {
     }   
 }
 
-// color picker function for player 1
+// Color picker function for player 1
 presetColorBoxes1.forEach((box) => {
     box.addEventListener('click', (e) => {
-        //resets all box shadows to none
         boxShadowClearer1();
         for (let i = 1; i<=colorPicker.length; i++){
             if (e.target.id === `player-1-box-${i}`) {
@@ -231,7 +239,7 @@ presetColorBoxes1.forEach((box) => {
             player1Color = colorPicker[i-1];
         }}})});
 
-//Box shadow remover functions that clears all the shadows when player clikcs on new color picker box
+// Box shadow remover functions that clears all the shadows when player clicks on new color picker box
 const boxShadowClearer1 = function() { 
     const boxArray = Array.from(presetColorBoxes1);
     boxArray.forEach((element) => {
@@ -243,10 +251,9 @@ const boxShadowClearer2 = function() {
             element.style["boxShadow"] = "0 0 0 white";
         })}
 
-// color picker function for player 2
+// Color picker function for player 2
 presetColorBoxes2.forEach((box) => {
     box.addEventListener('click', (e) => {
-        //resets all box shadows to none
         boxShadowClearer2();
         for (let i = 1; i<=colorPicker.length; i++){
             if (e.target.id === `player-2-box-${i}`) {
@@ -262,7 +269,7 @@ const colorPickerAddColor = function(e, colorArr, player) {
 } else if (player === 2) {
         customColor2.style["boxShadow"] = `0 0 0 white`;
 }}
-//player 1 custom color picker
+// Player 1 custom color picker
 player1customColorBtn.addEventListener('submit', function(e) {
     e.preventDefault();
     boxShadowClearer1();
@@ -273,7 +280,7 @@ player1customColorBtn.addEventListener('submit', function(e) {
     submitBtn1.setAttribute('value', 'Selected');
 })
 
-//player 2 custom color picker
+// Player 2 custom color picker
 player2customColorBtn.addEventListener('submit', function(e) {
     e.preventDefault();
     boxShadowClearer2();
@@ -283,7 +290,7 @@ player2customColorBtn.addEventListener('submit', function(e) {
     const submitBtn2 = document.querySelector('.color-select-2');
     submitBtn2.setAttribute('value', 'Selected');
 })
-// street fighter sample functions
+// Street fighter sample functions
 const perfectSample = function() {
     perfect.play();
 }
@@ -295,7 +302,7 @@ const winnerSample = function() {
 }   
 
 
-// player ongoing score updater function for win
+// Player ongoing score updater function for win
 const playerScore = function() {
   if (currentPlayer === 0) {
     const playerWin = document.querySelector('#player-2-wins');
@@ -314,7 +321,7 @@ const playerScore = function() {
   }
 }
 
-//tied game counter
+//Tied game counter and display updater
  const tiedGameCounter = function() {
    
     playerTies ++;

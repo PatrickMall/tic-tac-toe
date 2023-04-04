@@ -50,6 +50,12 @@ The game ends when either player get three in a row, either vertically, horizont
 
 Player can the play again and the win, loose or tie is recorded to their counter for future games.
 
+## Game winning logic
+
+To work out how the game is won, I built and array of the player places over the course of the game. This array consists of the players choices at the relevant indexs for the game spaces, e.g. 0 - 8 spaces running from top left to bottom right horizontally.
+
+This array is then checked against the potential 8 winning space combinations everytime a player makes a move.  When any of these conditions have become true,  the game ends and the player gets the winning message.
+
 ## Challenges
 
 Being my first ever project some of the technology I was using was quite new to me and took me a lot of time to really get my head around how to utilise it. 
