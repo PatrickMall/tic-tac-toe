@@ -39,7 +39,7 @@ Below is a list of the features I have added to the game which meet and add to t
 ## How to use the app
 
 When loaded the app should look like this:
-![Opening image of tic, tac, toe game](./Screenshot 2023-04-04 at 09.01.38.png "Opening page of tic tac toe app")
+![Opening image of tic, tac, toe game](./Main-App.png "Opening page of tic tac toe app")
 
 
 When the app has loaded players will be asked to select a colour for the counter and then click the "start game" button.
