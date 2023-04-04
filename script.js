@@ -92,7 +92,7 @@ againBtn.addEventListener('click', function(){
 })
 
 
-//MAIN FUNCTION
+//MAIN FUNCTION - adds x or o to the board and checks for winner, tie - then switches player
 boardcell.addEventListener('click',  function(e) {
 
      if (e.target.classList.contains('x') || e.target.classList.contains('o')) {
@@ -114,6 +114,7 @@ boardcell.addEventListener('click',  function(e) {
          }
 }})
 
+//Switch Player function
 const switchPlayer = function() {
     if (currentPlayer === 0) {
         currentPlayer = 1;
@@ -176,6 +177,7 @@ const checkTie = function() {
     }
 }
 
+// general clean up function that adds/ removes start, reset, playa again buttons
 const endGameBtns = function() {
     startBtn.classList.add('hidden');
     resetBtn.classList.add('hidden');
@@ -229,6 +231,7 @@ presetColorBoxes1.forEach((box) => {
             player1Color = colorPicker[i-1];
         }}})});
 
+//Box shadow remover functions that clears all the shadows when player clikcs on new color picker box
 const boxShadowClearer1 = function() { 
     const boxArray = Array.from(presetColorBoxes1);
     boxArray.forEach((element) => {
