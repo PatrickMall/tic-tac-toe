@@ -94,6 +94,91 @@ const volumeControl = function () {
 };
 ```
 
+### Color picker box shadow highlighter to show which color has been selected
+
+This group of functions turned out to be one of the more complicated parts of my project as I had to work between not only the presets I had provided but also if some choose their own color from the color picker I needed to highlight that instead of the preset. I wanted to be able to write one function that would do this logic for both players, but I could not work out how to do this so I duplicated the code for each player.
+
+here is the example of the color picker box shadow
+
+```js
+// Color picker function for player 1
+presetColorBoxes1.forEach((box) => {
+  box.addEventListener("click", (e) => {
+    boxShadowClearer1();
+    for (let i = 1; i <= colorPicker.length; i++) {
+      if (e.target.id === `player-1-box-${i}`) {
+        colorPickerAddColor(e, i - 1, 1);
+        player1Color = colorPicker[i - 1];
+      }
+    }
+  });
+});
+
+// Box shadow remover functions that clears all the shadows when player clicks on new color picker box
+const boxShadowClearer1 = function () {
+  const boxArray = Array.from(presetColorBoxes1);
+  boxArray.forEach((element) => {
+    element.style["boxShadow"] = "0 0 0 white";
+  });
+};
+const boxShadowClearer2 = function () {
+  const boxArray = Array.from(presetColorBoxes2);
+  boxArray.forEach((element) => {
+    element.style["boxShadow"] = "0 0 0 white";
+  });
+};
+
+// Color picker function for player 2
+presetColorBoxes2.forEach((box) => {
+  box.addEventListener("click", (e) => {
+    boxShadowClearer2();
+    for (let i = 1; i <= colorPicker.length; i++) {
+      if (e.target.id === `player-2-box-${i}`) {
+        colorPickerAddColor(e, i - 1, 2);
+        player2Color = colorPicker[i - 1];
+      }
+    }
+  });
+});
+
+// Adds colors to player
+const colorPickerAddColor = function (e, colorArr, player) {
+  rootSelector.style.setProperty(
+    `--pickedPlayer${player}`,
+    colorPicker[colorArr]
+  );
+  e.target.style["boxShadow"] = `0 0 20px white`;
+  if (player === 1) {
+    customColor1.style["boxShadow"] = `0 0 0 white`;
+  } else if (player === 2) {
+    customColor2.style["boxShadow"] = `0 0 0 white`;
+  }
+};
+// Player 1 custom color picker
+player1customColorBtn.addEventListener("submit", function (e) {
+  e.preventDefault();
+  boxShadowClearer1();
+  player1Color = customColor1.value;
+  rootSelector.style.setProperty(`--pickedPlayer1`, player1Color);
+  customColor1.style["boxShadow"] = `0 0 20px white`;
+  const submitBtn1 = document.querySelector(".color-select-1");
+  submitBtn1.setAttribute("value", "Selected");
+});
+
+// Player 2 custom color picker
+player2customColorBtn.addEventListener("submit", function (e) {
+  e.preventDefault();
+  boxShadowClearer2();
+  player2Color = customColor2.value;
+  rootSelector.style.setProperty(`--pickedPlayer2`, player2Color);
+  customColor2.style["boxShadow"] = `0 0 20px white`;
+  const submitBtn2 = document.querySelector(".color-select-2");
+  submitBtn2.setAttribute("value", "Selected");
+});
+```
+
+As you can see from the code I had to add a clearer function that removed the box shadow from the previous choice as the array of presets and color picker where separate elements in my application.
+
 ## What I would improve in the future
 
 I would like to improve the winning conditions feature as I know there is probably a much better way of writing these with an array which compares against my array of x's & o's, however I could not work out how to achieve this at the moment.
