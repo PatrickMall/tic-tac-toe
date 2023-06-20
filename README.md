@@ -24,6 +24,7 @@ Below is a list of the user stories that the game was built to achieve:
 - As a user, I should be able to play the game again without refreshing the page
 
 ## Features
+
 Below is a list of the features I have added to the game which meet and add to the MVP list I was set by the General Assembly Course I am currently part of.
 
 - 2 players can play against each other in games of tic tac toe.
@@ -39,8 +40,7 @@ Below is a list of the features I have added to the game which meet and add to t
 ## How to use the app
 
 When loaded the app should look like this:
-![Opening image of tic, tac, toe game](./Main-App.png "Opening page of tic tac toe app")
-
+![Opening image of tic, tac, toe game](./Main-App.png)
 
 When the app has loaded players will be asked to select a colour for the counter and then click the "start game" button.
 
@@ -52,15 +52,15 @@ Player can the play again and the win, loose or tie is recorded to their counter
 
 ## Game winning logic
 
-To work out how the game is won, I built and array of the player places over the course of the game. This array consists of the players choices at the relevant indexs for the game spaces, e.g. 0 - 8 spaces running from top left to bottom right horizontally.
+To work out how the game is won, I built and array of the player places over the course of the game. This array consists of the players choices at the relevant indexes for the game spaces, e.g. 0 - 8 spaces running from top left to bottom right horizontally.
 
-This array is then checked against the potential 8 winning space combinations everytime a player makes a move.  When any of these conditions have become true,  the game ends and the player gets the winning message.
+This array is then checked against the potential 8 winning space combinations everytime a player makes a move. When any of these conditions have become true, the game ends and the player gets the winning message.
 
 ## Challenges
 
-Being my first ever project some of the technology I was using was quite new to me and took me a lot of time to really get my head around how to utilise it. 
+Being my first ever project some of the technology I was using was quite new to me and took me a lot of time to really get my head around how to utilise it.
 
-Writing the Javascript sections was probably the hardest part of this project as it was very new to me and took a lot of research to find the necessary methods and tools to make this work. 
+Writing the Javascript sections was probably the hardest part of this project as it was very new to me and took a lot of research to find the necessary methods and tools to make this work.
 
 ## My favourite bits on this project
 
@@ -68,15 +68,41 @@ I really love designing and working with css and I feel that it shows on the way
 
 I am also really pleased with the colour picker feature and being able to work out how to have the UX I wanted, particulary the box shadow feature, indicates which colour has been selected for each player.
 
+## Build
+
+Below are two bits of code I would like to highlight as parts that I feel are some of the best features I built with this project.
+
+### Music fade out on game ending.
+
+i wanted the music to not abruptly cut out as soon as the winner won the game or when the game was reset as I was quite jolting and not a smooth transition. For this I looked into ways I could build a fade out on completion of the game.
+
+```js
+// Fade out function for music when player wins or ties
+let interval;
+const fadeOut = function () {
+  interval = setInterval(volumeControl, 50);
+};
+// Volume controller for fade out function
+const volumeControl = function () {
+  if (audio.volume > 0.01) {
+    audio.volume -= 0.01;
+  } else {
+    clearInterval(interval);
+    audioStop();
+    audio.volume = 0.5;
+  }
+};
+```
+
 ## What I would improve in the future
 
-I would like to improve the winning conditions feature as I know there is probably a much better way of writing these with an array which compares against my array of x's & o's, however I could not work out how to acheive this at the moment. 
+I would like to improve the winning conditions feature as I know there is probably a much better way of writing these with an array which compares against my array of x's & o's, however I could not work out how to achieve this at the moment.
 
-I would also like to try and build a AI player which people could then play against, so I may come back and try to imporve this game as  my knowledge and skills progress.
+I would also like to try and build a AI player which people could then play against, so I may come back and try to imporve this game as my knowledge and skills progress.
 
 I would like to write more stylesheets to optimise the game for all devices, including tablet.
 
- ### MIT License
+### MIT License
 
 Copyright (c) [2023] [Patrick Mallery]
 
