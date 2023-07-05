@@ -2,6 +2,8 @@
 
 ## About this Project
 
+[Link to deployed project](https://patrickmall.github.io/tic-tac-toe/)
+
 Hello! I'm Patrick and I created this virtual Tic, Tac, Toe game.
 
 I built this game by myself over 5 days as my first ever project as part of my software engineer course I am participating in at General assembly.
@@ -9,7 +11,9 @@ I built this game by myself over 5 days as my first ever project as part of my s
 To build this project I used a mixture of HTML, CSS and JavaScript to showcase the skills I have learnt so far. I decided that I wanted to give this project a very distinct theme, and for it to have a retro gaming feel. I am a big fan of the Synthwave, retrowave aesthetic so decided to theme my game in this style.
 
 To build this project I first created a very basic wireframe using adobe XD. I have exported a png version of this which can be found here in the repo. There is also a copy of the adobe.xd file in the repo if anyone wants to see the original.
-For this project we were given a very clear brief on what we needed to build and a MVP of these required features:
+For this project we were given a very clear brief on what we needed to build and a MVP of these required features.
+
+## MVP requirements
 
 - Render a game board in the browser
 - Switch turns between X and O (or whichever markers you select)
