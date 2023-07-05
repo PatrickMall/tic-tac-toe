@@ -4,15 +4,24 @@
 
 Hello! I'm Patrick and I created this virtual Tic, Tac, Toe game.
 
-I built this game as my first ever project as part of my software engineer course I am participating in at General assembly.
+I built this game by myself over 5 days as my first ever project as part of my software engineer course I am participating in at General assembly.
 
-To build this project I used a mixture of HTML, CSS and Javascript to showcase the skills I have learnt so far. I decided that I wanted to give this project a very distinct theme, and for it to have a retro gaming feel. I am a big fan of the Synthwave, retrowave aesthetic so decided to theme my game in this style.
+To build this project I used a mixture of HTML, CSS and JavaScript to showcase the skills I have learnt so far. I decided that I wanted to give this project a very distinct theme, and for it to have a retro gaming feel. I am a big fan of the Synthwave, retrowave aesthetic so decided to theme my game in this style.
 
-To build this project I first created a very basic wireframe using adobe XD. I have exported a png version of this which can be found [here](./Tic-Tac-Toe-Wireframe.png) in the repo.
-There is also a copy of the adobe.xd file in the repo if anyone wants to see the original.
+To build this project I first created a very basic wireframe using adobe XD. I have exported a png version of this which can be found here in the repo. There is also a copy of the adobe.xd file in the repo if anyone wants to see the original.
+For this project we were given a very clear brief on what we needed to build and a MVP of these required features:
 
-## User Stories
+- Render a game board in the browser
+- Switch turns between X and O (or whichever markers you select)
+- Visually display which side won if a player gets three in a row, or show a draw if neither player wins
+- Include separate HTML / CSS / JavaScript files
+- Stick with KISS (Keep It Simple Stupid) and DRY (Don't Repeat Yourself) principles
+- Use JavaScript for DOM manipulation
+- Deploy your game online, where the rest of the world can access it
+- Use semantic markup for HTML and CSS (adhere to best practices)
+- Have well-formatted, and well-commented code
 
+User Stories
 Below is a list of the user stories that the game was built to achieve:
 
 - As a user, I should be able to start a new tic tac toe game
@@ -30,53 +39,34 @@ Below is a list of the features I have added to the game which meet and add to t
 - 2 players can play against each other in games of tic tac toe.
 - Their scores from each game are tallied up, including number of wins, losses and ties
 - The game is also optimised to be able to play on mobile screen up to 480px in width
-- Players can select a preset synthwave color from my colour palette
+- Players can select a preset synthwave colour from my colour palette
 - Players can also select their own custom colour with the colour picker
-- Players can reset the game at any point and start the game from the beginning whilst not loosing their score.
-- The game has a retro wave video background to bring the overall synthwave aesthetic to life. The original video file can be found [here](https://pixabay.com/videos/wave-grid-mountains-rainbow-90073/)
-- The game also has a synthwave sound track for in game entertainment which start upon clicking the game start button, once players have selected their piece colours. The audio file can be found[here](https://pixabay.com/music/synthwave-lady-of-the-80x27s-128379/)
-- I used Classic streetfighter game samples for the start of the game, if somone wins and also when players make their move on the board.
+- Players can reset the game at any point and start the game from the beginning whilst not losing their score.
+- The game has a retro wave video background to bring the overall synthwave aesthetic to life.
+- The game also has a synthwave sound track for in-game entertainment which starts upon clicking the game start button, once players have selected their piece colours.
+- I used Classic street fighter game samples for the start of the game, if someone wins and also when players make their move on the board.
 
 ## How to use the app
 
 When loaded the app should look like this:
-![Opening image of tic, tac, toe game](./Main-App.png)
 
 When the app has loaded players will be asked to select a colour for the counter and then click the "start game" button.
-
-Player can then select the spaces on the boardgame to place their marker (either x or o, depending on the player).
-
-The game ends when either player get three in a row, either vertically, horizontally or diagonally.
-
-Player can the play again and the win, loose or tie is recorded to their counter for future games.
+Players can then select the spaces on the board game to place their marker (either x or o, depending on the player).
+The game ends when either player gets three in a row, either vertically, horizontally or diagonally.
+Players can the play again and the win, loose or tie is recorded to their counter for future games.
 
 ## Game winning logic
 
-To work out how the game is won, I built and array of the player places over the course of the game. This array consists of the players choices at the relevant indexes for the game spaces, e.g. 0 - 8 spaces running from top left to bottom right horizontally.
-
+To work out how the game is won, I built an array of the player places over the course of the game. This array consists of the players’ choices at the relevant indexes for the game spaces, e.g. 0 - 8 spaces running from top left to bottom right horizontally.
 This array is then checked against the potential 8 winning space combinations everytime a player makes a move. When any of these conditions have become true, the game ends and the player gets the winning message.
-
-## Challenges
-
-Being my first ever project some of the technology I was using was quite new to me and took me a lot of time to really get my head around how to utilise it.
-
-Writing the Javascript sections was probably the hardest part of this project as it was very new to me and took a lot of research to find the necessary methods and tools to make this work.
-
-## My favourite bits on this project
-
-I really love designing and working with css and I feel that it shows on the way this project looks and feels to play. I have learnt a lot of new skills with it too including using css color variables which I had never used before.
-
-I am also really pleased with the colour picker feature and being able to work out how to have the UX I wanted, particulary the box shadow feature, indicates which colour has been selected for each player.
 
 ## Build
 
 Below are two bits of code I would like to highlight as parts that I feel are some of the best features I built with this project.
+Music fades out on game ending.
+I wanted the music to not abruptly cut out as soon as the winner won the game or when the game was reset as I was quite jolting and not a smooth transition. For this, I looked into ways I could build a fade out on completion of the game. And eventually built a fade out function that utilised a setInterval to slowly decrease the audio volume.
 
-### Music fade out on game ending.
-
-i wanted the music to not abruptly cut out as soon as the winner won the game or when the game was reset as I was quite jolting and not a smooth transition. For this I looked into ways I could build a fade out on completion of the game.
-
-```js
+```javascript
 // Fade out function for music when player wins or ties
 let interval;
 const fadeOut = function () {
@@ -94,13 +84,12 @@ const volumeControl = function () {
 };
 ```
 
-### Color picker box shadow highlighter to show which color has been selected
+Colour picker box shadow highlighter to show which colour has been selected
+This group of functions turned out to be one of the more complicated parts of my project as I had to work between not only the presets I had provided but also if someone chose their own colour from the colour picker, then I needed to highlight that instead of the preset. I wanted to be able to write one function that would do this logic for both players, but I could not work out how to do this so I duplicated the code for each player.
 
-This group of functions turned out to be one of the more complicated parts of my project as I had to work between not only the presets I had provided but also if some choose their own color from the color picker I needed to highlight that instead of the preset. I wanted to be able to write one function that would do this logic for both players, but I could not work out how to do this so I duplicated the code for each player.
+Here is the example of the colour picker box shadow
 
-here is the example of the color picker box shadow
-
-```js
+```javascript
 // Color picker function for player 1
 presetColorBoxes1.forEach((box) => {
   box.addEventListener("click", (e) => {
@@ -177,34 +166,27 @@ player2customColorBtn.addEventListener("submit", function (e) {
 });
 ```
 
-As you can see from the code I had to add a clearer function that removed the box shadow from the previous choice as the array of presets and color picker where separate elements in my application.
+As you can see from the code I had to add a clearer function that removed the box shadow from the previous choice as the array of presets and colour picker were separate elements in my application.
 
-## What I would improve in the future
+## Challenges
 
+Being my first ever project some of the technology I was using was quite new to me and took me a lot of time to really get my head around how to utilise it.
+Writing the JavaScript sections was probably the hardest part of this project as it was very new to me and took a lot of research to find the necessary methods and tools to make this work.
+
+## My favourite bits on this project
+
+I really love designing and working with css and I feel that it shows on the way this project looks and feels to play. I have learnt a lot of new skills with it too including using CSS colour variables which I had never used before.
+I am also really pleased with the colour picker feature and being able to work out how to have the UX I wanted, particularly the box shadow feature, indicating which colour has been selected for each player.
+What I would improve in the future
+
+My biggest learnings from this project was gaining a much deeper understanding of JavaScript than I had previously had. I also learnt a lot about ways I can use CSS animations to create smooth transitions and seamless cool aesthetics to web applications.
 I would like to improve the winning conditions feature as I know there is probably a much better way of writing these with an array which compares against my array of x's & o's, however I could not work out how to achieve this at the moment.
+I would also like to try and build an AI powered player which people could then play against, so I may come back and try to add to this game as my knowledge and skills progress.
+I would like to write more stylesheets to optimise the game for all devices, including tablets.
 
-I would also like to try and build a AI player which people could then play against, so I may come back and try to imporve this game as my knowledge and skills progress.
-
-I would like to write more stylesheets to optimise the game for all devices, including tablet.
-
-### MIT License
+## MIT License
 
 Copyright (c) [2023] [Patrick Mallery]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
